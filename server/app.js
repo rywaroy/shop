@@ -8,11 +8,12 @@ const json = require('koa-json');
 const bodyparser = require('koa-bodyparser')();
 
 var staticServer = require('koa-static');
-const article = require('./routes/article');
-const admin = require('./routes/admin');
+const user = require('./routes/user');
+const file = require('./routes/file')
+// const admin = require('./routes/admin');
 const fs = require('fs')
 
-app.use(staticServer(__dirname + '/static'));
+app.use(staticServer(__dirname + '/public'));
 app.use(cors())
 
 
@@ -22,8 +23,9 @@ app.use(convert(bodyparser));
 app.use(convert(json()));
 app.use(require('./middlewares/returnData'));
 
-
-// router.use('/api/article', article.routes(), article.allowedMethods());
+router.use('/api/user', user.routes(), user.allowedMethods());
+router.use('/api/file', file.routes(), file.allowedMethods());
+app.use(router.routes(), router.allowedMethods());
 // router.use('/api/admin',admin.routes(),admin.allowedMethods());
 
 // router.get('/', async (ctx) => {
@@ -47,7 +49,7 @@ app.use(require('./middlewares/returnData'));
 //     ctx.body = htmlFile;
 //     // res.sendFile(path.join(__dirname + '/admin/index.html'));
 // });
-// app.use(router.routes(), router.allowedMethods());
+
 
 app.listen(3000);
 console.log('app started at port 3000...');

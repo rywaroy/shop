@@ -1,0 +1,169 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  list-style: none;
+  font-family:微软雅黑;
+  box-sizing: border-box;
+  /*transition: all .3s;*/
+}
+
+*:focus {
+  outline: none;
+}
+
+*, *:before, *:after {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+em{
+  font-style: normal;
+}
+ol, ul, li {
+
+  padding: 0;
+  margin: 0;
+  display: block;
+
+}
+
+u, i {
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0px;
+
+}
+
+fieldset, img {
+  border: 0;
+
+}
+
+html {
+  width: 100%;
+}
+
+body {
+  width: 100%;
+  position: relative;
+  font-size: 13px;
+  background-color: #f4f6f9;
+  overflow-x: auto;
+  min-height: 100%;
+}
+body,html{
+  height: 100%;
+}
+input, select, textarea {
+  -webkit-appearance: none;
+  border: none;
+  border-radius: 0;
+  background: none;
+}
+
+a {
+  color:#000;
+  text-decoration: none;
+}
+
+a:link {
+
+  text-decoration: none;
+}
+
+a:visited {
+
+  text-decoration: none;
+}
+
+.f-cb{
+  zoom: 1;
+}
+
+.f-cb:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden
+}
+.fl{
+  float: left;
+}
+.fr{
+  float: right;
+}
+.text-ovh{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.text-break{
+  word-break:break-all;
+}
+.bg-cover{
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.bg-contain{
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+#app{
+  height: 100%;
+}
+.main{
+  height: 100%;
+}
+.scroll-box{
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.slide-top-enter-active,.slide-top-leave-active{
+  transition: all .4s
+}
+.slide-top-enter,.slide-top-leave-active{
+  transform: translate(0, 100%);
+}
+
+.slide-go-left-enter-active,.slide-go-left-leave-active{
+  transition: all .4s
+}
+.slide-go-left-enter,.slide-go-left-leave-active{
+  transform: translate(100%, 0);
+}
+#app .van-nav-bar{
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+}
+.main{
+  position: absolute;
+  width:100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  transition: all .4s cubic-bezier(.55,0,.1,1);
+}
+
+.slide-left-enter, .slide-right-leave-active {
+  opacity: 0;
+  -webkit-transform: translate(100%, 0);
+  transform: translate(100%, 0);
+}
+.slide-left-leave-active, .slide-right-enter {
+  opacity: 0;
+  -webkit-transform: translate(-100%, 0);
+  transform: translate(-100%, 0);
+}
