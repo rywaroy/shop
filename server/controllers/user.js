@@ -124,7 +124,7 @@ User.sex = async (ctx) => {
 User.password = async (ctx) => {
     let password = ctx.request.body.password
     let oldpwd = ctx.request.body.oldpwd
-    if(ctx.userInfo[0].password != oldpwd){
+    if(ctx.userInfo.password != oldpwd){
         ctx.error('0','原密码错误')
     }else{
         let token = ctx.headers.authorization
@@ -153,5 +153,47 @@ function newUesrInfo(token){
         })
     })
 }
+
+User.list = async (ctx) => {
+    let limit = ctx.query.limit || '20';
+    let page = ctx.query.page || '1';
+    let data = await (new Promise((resolve,reject) => {
+        db.query('select id , account , sex , nickname , integral , created , status from user where status <= 1 limit ' + (page-1)*limit + ' , ' + limit , function (err, rows) {
+            if (err) {
+                reject(err)
+            }
+            else {
+                resolve(rows)
+            }
+        })
+    }))
+    let count = await (new Promise((resolve,reject) => {
+        db.query('select count(*) from user where status <= 1', function (err, row) {
+			if (err) {
+				reject(err)
+			} else {
+				resolve(row[0]['count(*)'])
+			}
+		})
+    }))
+    ctx.success('1','获取成功',{list:data,total:count})
+}
+
+User.disable = async (ctx) => {
+    let id = ctx.request.body.id
+    let status = 0
+    await (new Promise((resolve,reject) => {
+        db.query('update user set status = 0 where id = ' + id, function (err, rows) {
+            if (err) {
+                reject(err)
+            }
+            else {
+                resolve()
+            }
+        })
+    }))
+    ctx.success('1','成功禁用该用户')
+}
+
 
 module.exports = User
