@@ -54,10 +54,10 @@ export default {
       }
       var _this = this;
       var fd = new FormData();
-      fd.append("file", file);
+      fd.append("avatar", file);
       axios({
         method: 'post',
-        url: _this.plus.path + '/file/upload',
+        url: _this.plus.path + '/file/avatar',
         headers: {
           "Content-Type": "multipart/form-data"
         },
