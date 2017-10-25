@@ -9,7 +9,8 @@ const bodyparser = require('koa-bodyparser')();
 
 var staticServer = require('koa-static');
 const user = require('./routes/user');
-const file = require('./routes/file')
+const file = require('./routes/file');
+const attr = require('./routes/attr')
 // const admin = require('./routes/admin');
 const fs = require('fs')
 
@@ -25,6 +26,7 @@ app.use(require('./middlewares/returnData'));
 
 router.use('/api/user', user.routes(), user.allowedMethods());
 router.use('/api/file', file.routes(), file.allowedMethods());
+router.use('/api/attr', attr.routes(), attr.allowedMethods());
 app.use(router.routes(), router.allowedMethods());
 // router.use('/api/admin',admin.routes(),admin.allowedMethods());
 

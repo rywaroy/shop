@@ -7,6 +7,7 @@ const asyncComponent = (name) => {
 const Login = asyncComponent('Login/Login')
 const Home = asyncComponent('Home/Home')
 const User = asyncComponent('User/User')
+const Attribute = asyncComponent('Attribute/Attribute')
 Vue.use(Router)
 
 export default new Router({
@@ -28,6 +29,14 @@ export default new Router({
           path: '/',
           name: 'user',
           component: User,
+          meta:{
+            requireLogin:true
+          }
+        },
+        {
+          path: '/attribute',
+          name: 'attribute',
+          component: Attribute,
           meta:{
             requireLogin:true
           }

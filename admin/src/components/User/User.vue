@@ -41,24 +41,22 @@ export default {
     },
     methods: {
         getUserList() {
-            let _this = this;
             this.$http.get('/user/list', {
                 params: {
-                    page: _this.page,
-                    limit: _this.limit
+                    page: this.page,
+                    limit: this.limit
                 }
             }).then(res => {
-                _this.list = res.data.data.list
-                _this.total = res.data.data.total
+                this.list = res.data.data.list
+                this.total = res.data.data.total
             })
         },
         disable(id, index) {
-            let _this = this;
             this.$http.post('/user/disable', {
                 id: id
             }).then(res => {
-                _this.$message('成功禁用该用户')
-                _this.list[index].status = 0;
+                this.$message('成功禁用该用户')
+                this.list[index].status = 0;
             })
         },
         changePage(num){
