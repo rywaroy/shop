@@ -12,6 +12,17 @@ Attr.list = async (ctx) => {
     ctx.success('1','获取成功',data)
 }
 
+Attr.item = async (ctx) => {
+    let id = ctx.query.id
+    let data = await(new Promise((resolve,reject) => {
+        db.query('select * from attr_item where attr_id = ?',[id],function(err,rows){
+            if(err) throw err;
+            resolve(rows)
+        })  
+    }))
+    ctx.success('1','获取成功',data)
+}
+
 Attr.all = async (ctx) => {
     let data = await(new Promise((resolve,reject) => {
         db.query('select a.id, a.value ,b.id as aid, b.attr_id , b.value as item_value from attr as a left join attr_item as b on a.id = b.attr_id',function(err,rows){

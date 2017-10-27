@@ -20,12 +20,8 @@ const storage = multer.diskStorage({
     ctx.success('1','上传成功',{filename: 'http://' + ctx.request.host + '/uploads/' +ctx.req.file.filename}) 
   })  
 
-  router.post('/photos', upload.single('photos',9), async (ctx, next) => {
-    let filename = []
-    for(let i in ctx.req.file.filename){
-      filename.push('http://' + ctx.request.host + '/uploads/' +ctx.req.file.filename[i])
-    } 
-    ctx.success('1','上传成功',{filename: filename}) 
+  router.post('/photos', upload.single('photos'), async (ctx, next) => {
+    ctx.success('1','上传成功',{filename: 'http://' + ctx.request.host + '/uploads/' +ctx.req.file.filename}) 
   }) 
 
 

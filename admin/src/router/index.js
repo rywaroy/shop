@@ -8,6 +8,8 @@ const Login = asyncComponent('Login/Login')
 const Home = asyncComponent('Home/Home')
 const User = asyncComponent('User/User')
 const Attribute = asyncComponent('Attribute/Attribute')
+const Add = asyncComponent('Product/Add')
+const Class = asyncComponent('Class/Class')
 Vue.use(Router)
 
 export default new Router({
@@ -37,6 +39,22 @@ export default new Router({
           path: '/attribute',
           name: 'attribute',
           component: Attribute,
+          meta:{
+            requireLogin:true
+          }
+        },
+        {
+          path: '/product/add',
+          name: 'addproduct',
+          component: Add,
+          meta:{
+            requireLogin:true
+          }
+        },
+        {
+          path: '/class',
+          name: 'class',
+          component: Class,
           meta:{
             requireLogin:true
           }

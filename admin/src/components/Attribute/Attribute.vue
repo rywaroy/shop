@@ -67,17 +67,20 @@ export default {
       this.$alert("确定删除分类项目？", "删除", {
         confirmButtonText: "确定",
         callback: action => {
-          this.$http
-            .post("/attr/deleteitem", {
-              id: id
-            })
-            .then(res => {
-              this.$message({
-                type: "success",
-                message: "删除成功"
+          if (action == 'confirm') {
+            this.$http
+              .post("/attr/deleteitem", {
+                id: id
+              })
+              .then(res => {
+                this.$message({
+                  type: "success",
+                  message: "删除成功"
+                });
+                this.getClass();
               });
-              this.getClass();
-            });
+          }
+
         }
       });
     },

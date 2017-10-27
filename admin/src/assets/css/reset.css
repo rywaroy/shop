@@ -137,3 +137,6 @@ a:visited {
     text-align: center;
     padding: 30px 0;
 }
+.ql-container{
+  height: 334px !important;
+}

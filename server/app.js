@@ -11,7 +11,7 @@ var staticServer = require('koa-static');
 const user = require('./routes/user');
 const file = require('./routes/file');
 const attr = require('./routes/attr')
-// const admin = require('./routes/admin');
+const product = require('./routes/product');
 const fs = require('fs')
 
 app.use(staticServer(__dirname + '/public'));
@@ -27,6 +27,7 @@ app.use(require('./middlewares/returnData'));
 router.use('/api/user', user.routes(), user.allowedMethods());
 router.use('/api/file', file.routes(), file.allowedMethods());
 router.use('/api/attr', attr.routes(), attr.allowedMethods());
+router.use('/api/product', product.routes(), product.allowedMethods());
 app.use(router.routes(), router.allowedMethods());
 // router.use('/api/admin',admin.routes(),admin.allowedMethods());
 
