@@ -4,6 +4,7 @@
             <el-menu-item index="user">用户列表</el-menu-item>
             <el-menu-item index="class">商品分类</el-menu-item>
             <el-menu-item index="attribute">商品规格分类</el-menu-item>
+            <el-menu-item index="product">商品列表</el-menu-item>
         </el-menu>
         <router-view class="main"/>
     </div>

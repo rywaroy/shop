@@ -37,13 +37,14 @@
     },
     methods:{
       addGroup(){
-        if(this.item1 && this.price && this.stock){
+        if(this.item1 !=null && this.price && this.stock){
+        
           let json = {}
           json.items = []
           json.price = this.price;
           json.stock = this.stock;
           json.items[0] = this.item1Data;
-          if(this.item2){
+          if(this.item2 != null){
             json.items[1] = this.item2Data;
           }
           this.$emit('group',{data:json,index:this.num})

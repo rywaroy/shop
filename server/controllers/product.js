@@ -46,8 +46,10 @@ Product.product = async (ctx) => {
     let stock = ctx.request.body.stock
     let intro = ctx.request.body.intro
     let photo = ctx.request.body.photo
+    let imgs = JSON.stringify(ctx.request.body.imgs)
+    let group = JSON.stringify(ctx.request.body.group)
     let insertId = await (new Promise((resolve,reject) => {
-        db.query('insert into product (name,price,stock,intro,photo,cid) values (?,?,?,?,?,?)',[name,price,stock,intro,photo,cid],function(err,rows){
+        db.query('insert into products (name,price,stock,intro,photo,cid) values (?,?,?,?,?,?)',[name,price,stock,intro,photo,cid],function(err,rows){
             if (err) {
                 throw err
             } else {
@@ -57,6 +59,29 @@ Product.product = async (ctx) => {
             }
         })
     }))
+    await (new Promise((resolve,reject) => {
+        db.query('insert into products_imgs (pid,imgs) values (?,?)',[insertId,imgs],function(err,rows){
+            if (err) {
+                throw err
+            } else {
+                if (rows.insertId) {
+                    resolve()
+                }
+            }
+        })
+    }))
+    await (new Promise((resolve,reject) => {
+        db.query('insert into products_group (pid,groups) values (?,?)',[insertId,group],function(err,rows){
+            if (err) {
+                throw err
+            } else {
+                if (rows.insertId) {
+                    resolve()
+                }
+            }
+        })
+    }))
+    ctx.success('1','添加成功')
 }
 
 module.exports = Product

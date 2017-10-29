@@ -10,6 +10,7 @@ const User = asyncComponent('User/User')
 const Attribute = asyncComponent('Attribute/Attribute')
 const Add = asyncComponent('Product/Add')
 const Class = asyncComponent('Class/Class')
+const Product = asyncComponent('Product/Product')
 Vue.use(Router)
 
 export default new Router({
@@ -55,6 +56,14 @@ export default new Router({
           path: '/class',
           name: 'class',
           component: Class,
+          meta:{
+            requireLogin:true
+          }
+        },
+        {
+          path: '/product',
+          name: 'product',
+          component: Product,
           meta:{
             requireLogin:true
           }

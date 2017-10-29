@@ -2,13 +2,13 @@
   <div class="add">
     <div class="add-title">主图：</div>
     <div class="add-img bg-cover" :style="{backgroundImage:'url('+photo+')'}">
-      <input type="file" @change="addPhoto($event)" multiple>
+      <input type="file" @change="addPhoto($event,1)">
     </div>
     <div class="add-title">轮播图：</div>
     <div class="add-imgs">
       <div class="add-img bg-cover" v-for="(item,index) in imgs" :key="index" :style="{backgroundImage:'url('+item+')'}"></div>
       <div class="add-img">
-        <input type="file" @change="addPhoto($event)">
+        <input type="file" @change="addPhoto($event,2)">
       </div>
     </div>
     <div class="add-box">
@@ -118,7 +118,7 @@ export default {
       }
       this.stock = sum
     },
-    addPhoto: function (imgFile) {
+    addPhoto: function (imgFile, type) {
       // var filextension = imgFile.target.value.substring(imgFile.target.value.lastIndexOf("."), imgFile.target.value.length);
       // filextension = filextension.toLowerCase();
       var file = imgFile.target.files[0]
@@ -133,7 +133,12 @@ export default {
         },
         data: fd
       }).then(function (res) {
-        _this.photo = res.data.data.filename
+        if (type == 1) {
+          _this.photo = res.data.data.filename
+        } else {
+          _this.imgs.push(res.data.data.filename)
+        }
+
       })
     },
     sub() {
@@ -169,6 +174,19 @@ export default {
         this.$message.error('请输入商品简介')
         return
       }
+      this.$http.post('/product/product',{
+        cid:this.classId,
+        name:this.name,
+        price:this.price,
+        stock:this.stock,
+        intro:this.intro,
+        photo:this.photo,
+        imgs:this.imgs,
+        group:this.groupList
+      }).then(res => {
+        this.$message('添加成功')
+        
+      })
     }
   }
 };
