@@ -1,7 +1,9 @@
 <template>
     <div class="home">
         <Welcome v-show="active == 0"></Welcome>
+        <Class v-show="active == 1"></Class>
         <Center v-show="active == 3"></Center>
+        
         <van-tabbar v-model="active" @change="change">
             <van-tabbar-item icon="wap-home">首页</van-tabbar-item>
             <van-tabbar-item icon="shop">分类</van-tabbar-item>
@@ -13,6 +15,7 @@
 <script>
 import Welcome from './Welcome'
 import Center from '../Center/Center'
+import Class from '../Class/Class'
 export default {
     data() {
         return {
@@ -21,7 +24,8 @@ export default {
     },
     components:{
         Welcome,
-        Center
+        Center,
+        Class
     },
     methods: {
         change(num) {

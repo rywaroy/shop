@@ -8,6 +8,7 @@ const Home = asyncComponent('Home/Home')
 const Nickname = asyncComponent('Center/Nickname')
 const Sex = asyncComponent('Center/Sex')
 const Password = asyncComponent('Center/Password')
+const ProductList = asyncComponent('Product/ProductList')
 Vue.use(Router)
 
 export default new Router({
@@ -31,6 +32,11 @@ export default new Router({
       path : '/center/password',
       name:'password',
       component:Password
+    },
+    {
+      path : '/product/list',
+      name:'productlist',
+      component:ProductList
     },
   ]
 })
